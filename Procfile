@@ -1,1 +1,1 @@
-web: npm run serve | python flaskTest.py
+web: npm start | python flaskTest.py
