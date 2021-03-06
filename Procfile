@@ -1,1 +1,1 @@
-web: npm start ; gunicorn flaskTest.py
+web: npm start ; python flaskTest.py
