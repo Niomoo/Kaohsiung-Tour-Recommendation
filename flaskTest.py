@@ -16,8 +16,11 @@ from flask_cors import CORS
 from flask import request
 import json
 from utils import POOL
+from dotenv import load_dotenv
+import os
+load_dotenv()
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='dist/',    static_url_path='/')
 CORS(app)
 
 # 連接資料庫
@@ -56,8 +59,8 @@ mrelated = mrelated.values
 tags = tags.values
 
 @app.route('/')
-def hollo():
-    return "hello flask"
+def index():
+    return app.send_static_file('index.html')
 
 def haversine(lon1, lat1, lon2, lat2):
     lon1, lat1, lon2, lat2 = map(radians, [lon1, lat1, lon2, lat2])
@@ -527,7 +530,8 @@ resList = []                         #暫存排序後的結果
 isMrt = {}                           #暫存如果是來自可能三的結果（會影響到mList）
 
 if __name__ == "__main__":
-    app.run()
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host='127.0.0.1', port=port)
 
 # In[ ]:
 
