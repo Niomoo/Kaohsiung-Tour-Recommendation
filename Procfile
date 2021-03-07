@@ -1,1 +1,1 @@
-web: npm start ; python flaskTest.py
+web: gunicorn flaskTest:app --log-file -
